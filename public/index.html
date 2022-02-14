@@ -11,26 +11,7 @@
 </head>
 
 <body class="container">
-  <h1 class="mt-5">Mini Chat</h1>
-
-  <hr>
-  <form action="" id="miFormulario">
-    <div class="row">
-      <div class="col-8">
-        <input type="text" id="txtMsg" placeholder="mesaage" class="form-control">
-      </div>
-      <div class="col-4">
-        <button>Enviar</button>
-      </div>
-
-    </div>
-  </form>
-  <div class="row">
-    <div class="col">
-      <ul id="misMensajes" class="mt-2"></ul>
-    </div>
-  </div>
-
+  <h1>Acceso denegado</h1>
   <!-- Esta es nuetsra cadena de conexion -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"
     integrity="sha512-MgkNs0gNdrnOM7k+0L+wgiRc5aLgl74sJQKbIWegVIMvVGPc1+gc1L2oK9Wf/D9pq58eqIJAxOonYPVE5UwUFA=="
@@ -38,33 +19,13 @@
 
   <!-- con este script conectamos nuestro FrontEnd con nuestro BackEnd-->
   <script>
-    // const socket = io('http://localhost:3500');
-    const socket = io('https://react-socketsio.herokuapp.com/');
-    // referewncias al elementos del DOM
-    const d = document;
-    const formulario = d.querySelector('#miFormulario');
-    const mensajes = d.querySelector('#misMensajes');
+    const socket = io('http://localhost:3000');
+    // const socket = io('https://react-socketsio.herokuapp.com/');
 
-    formulario.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const newMessage = txtMsg.value;
-      socket.emit('message-to-server', { msg: newMessage, date: new Date() })
-
-    })
-    socket.on('message-from-server', (data) => {
+    socket.on('band-list-current', (data) => {
       console.log(data);
-      mensajes.innerHTML += `<li>${data.msg}</li>`;
-
     })
-    // aqui estamos escuchando los msg del backEnd
-    // socket.on('msg bienvenida', (data) => {
-    //   console.log(data);
-    // })
-    // aqui estamos emitiendo mensajes al servidor
-    // setTimeout(() => {
-    //   socket.emit('msg-cliente', { name: 'Luis', fecha: new Date(), msg: 'hola luis' })
 
-    // }, 2000);
 
   </script>
 
